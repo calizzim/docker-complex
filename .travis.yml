@@ -10,3 +10,9 @@ after_success:
 - docker build -t michaelcalizzi/multi-nginx ./nginx
 - docker build -t michaelcalizzi/multi-server ./server
 - docker build -t michaelcalizzi/multi-worker ./worker
+# once the images are built - push them to docker hub
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- docker push michaelcalizzi/multi-client
+- docker push michaelcalizzi/multi-nginx
+- docker push michaelcalizzi/multi-server
+- docker push michaelcalizzi/multi-worker
